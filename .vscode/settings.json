@@ -6,5 +6,6 @@
   },
   "eslint.validate": ["javascript", "typescript"],
   //disable jest extension
-  "jest.enable": false
+  "jest.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
