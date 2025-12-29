@@ -36,6 +36,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# generated files
+pgdata/
+drizzle/
+prisma/
+
 **/*.trace
 **/*.zip
 **/*.tar.gz
