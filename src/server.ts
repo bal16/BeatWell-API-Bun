@@ -1,14 +1,15 @@
 import { createApp } from './app';
+import { logger } from './plugins/logger';
 
-console.log('⏳ Booting up AI Service...');
+logger.info('⏳ Booting up AI Service...');
 // await aiService.initialize();
 
-// 2. Buat App dengan Service Asli
 const app = createApp();
 
 // 3. Baru Listen Port
-app.listen(3000);
+app
+  .listen(3000);
 
-console.log(
+logger.info(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
 );
