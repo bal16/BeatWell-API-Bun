@@ -3,7 +3,7 @@
 ## Login
 
 - Method: **POST**
-- Endpoint: **/login**
+- Endpoint: **/auth/sign-in**
 
 ### Request Body
 
@@ -47,9 +47,10 @@
 ## Register
 
 - Method: **POST**
-- Endpoint: **/register**
+- Endpoint: **/auth/register**
 
 ### Request Body
+
 ```json
 {
   "name": "balya",
@@ -77,6 +78,41 @@
   "status": 400,
   "body": {
     "message": "Your credential is not valid",
+    "error": true
+  }
+}
+```
+
+## Logout
+
+- Method: **POST**
+- Endpoint: **/auth/logout**
+
+### Request Header
+
+```text
+Authentication: Bearer `JWT_TOKEN`
+```
+
+### Response (Success)
+
+```json
+{
+  "status": 200,
+  "body": {
+    "message": "Sign Out success",
+    "error": false
+  }
+}
+```
+
+### Response (Failed)
+
+```json
+{
+  "status": 401,
+  "body": {
+    "message": "Unauthorized",
     "error": true
   }
 }
