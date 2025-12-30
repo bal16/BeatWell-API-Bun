@@ -9,7 +9,7 @@ export const betterAuthPlugins = new Elysia({ name: 'better-auth' })
         const session = await auth.api.getSession({ headers });
 
         if (!session) {
-          return status(401, { message: 'Unauthorized' });
+          return status(401, { message: 'Unauthorized', error: true });
         }
 
         return {
