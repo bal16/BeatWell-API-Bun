@@ -1,0 +1,7 @@
+[test]
+# Setup global jika ada yang benar-benar dipakai di SEMUA test
+# preload = ["./tests/setup-global.ts"] 
+
+# Coverage biasanya diinginkan di kedua skenario
+coverage = true
+coverageThreshold = 0.8

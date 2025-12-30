@@ -36,7 +36,7 @@
 
 ```json
 {
-  "status": 400,
+  "status": 401,
   "body": {
     "message": "Email or password is invalid",
     "error": true
