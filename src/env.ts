@@ -24,7 +24,7 @@ const envSchema = z.object({
     ),
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
-  JWT_SECRET: z.string().min(1, 'JWT_SECRET is required'),
+  // JWT_SECRET: z.string().min(1, 'JWT_SECRET is required'),
   PREDICTION_MODEL_URL: z.url().min(1, 'PREDICTION_MODEL_URL is required'),
   CHATBOT_MODEL_URL: z.url().min(1, 'CHATBOT_MODEL_URL is required'),
   CHATBOT_INTENTS_URL: z.string().min(1, 'CHATBOT_INTENTS_URL is required'),
@@ -42,7 +42,7 @@ const raw = {
 
   TRUSTED_ORIGINS: bunenv.TRUSTED_ORIGINS ?? process.env.TRUSTED_ORIGINS,
 
-  JWT_SECRET: bunenv.JWT_SECRET ?? process.env.JWT_SECRET,
+  // JWT_SECRET: bunenv.JWT_SECRET ?? process.env.JWT_SECRET,
   PREDICTION_MODEL_URL:
     bunenv.PREDICTION_MODEL_URL ?? process.env.PREDICTION_MODEL_URL,
   CHATBOT_MODEL_URL: bunenv.CHATBOT_MODEL_URL ?? process.env.CHATBOT_MODEL_URL,
