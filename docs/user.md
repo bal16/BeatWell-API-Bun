@@ -1,3 +1,5 @@
+# Users Endpoint
+
 ## Update user
 
 - Method: **PATCH**
@@ -11,6 +13,7 @@
 ```
 
 ### Request Body
+
 ```json
 {
   "name": "<optional> string",
@@ -23,17 +26,16 @@
 
 ```json
 {
-    "status": 200,
+  "status": 200,
   "body": {
-      "message": "User updated successfully",
+    "message": "User updated successfully",
     "error": false
   }
 }
 ```
 
+## delete user
 
-## Update user
-      
 - Method: **DELETE**
 - Endpoint: **/users**
 - Headers:
@@ -48,9 +50,9 @@
 
 ```json
 {
-    "status": 200,
+  "status": 200,
   "body": {
-      "message": "User deleted successfully",
+    "message": "User deleted successfully",
     "error": false
   }
 }
