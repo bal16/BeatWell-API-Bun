@@ -18,7 +18,9 @@ export const histories = pgTable(
     id: text('id')
       .primaryKey()
       .$defaultFn(() => createId()),
-    userId: text('user_id').notNull(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
     result: text('result').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
   },
@@ -38,7 +40,9 @@ export const healthProfiles = pgTable(
     id: text('id')
       .primaryKey()
       .$defaultFn(() => createId()),
-    userId: text('user_id').notNull(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
   },
   (table) => [index('health_profiles_user_id_index').on(table.userId)],
 );
@@ -52,10 +56,6 @@ export const healthyFoods = pgTable('healthy_foods', {
   image: text('image').notNull(),
   ingredient: text('ingredient').notNull(),
 });
-
-export const activitiesRelations = relations(activities, ({ many }) => ({
-  histories: many(histories),
-}));
 
 export const healthProfilesRelations = relations(healthProfiles, ({ one }) => ({
   user: one(user, {

@@ -1,10 +1,10 @@
 import { Elysia } from 'elysia';
-import authFeature from './features/auth';
 import { corsPlugins } from './plugins/cors';
 import { loggerPlugins } from './plugins/logger';
 import { openApiPlugins } from './plugins/open-api';
 import { betterAuthPlugins } from './plugins/auth';
-import { InvalidCredentialsError } from './exceptions/InvalidCredentialsError';
+import authFeature from './features/auth';
+import CHDPredictionFeature from './features/prediction';
 
 export const createApp = () => {
   return new Elysia()
@@ -13,8 +13,12 @@ export const createApp = () => {
     .use(loggerPlugins)
     .use(betterAuthPlugins)
     .use(authFeature)
+    .use(CHDPredictionFeature)
     .get('/', () => ({ status: 'ok', backend: 'tensorflow-wasm' }), {
-      detail: { description: 'Health check endpoint to verify server status' },
+      detail: {
+        summary: 'App Health Check',
+        description: 'Health check endpoint to verify server status',
+      },
       tags: ['Health Check'],
     });
 };
