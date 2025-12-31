@@ -5,6 +5,7 @@ import { openApiPlugins } from './plugins/open-api';
 import { betterAuthPlugins } from './plugins/auth';
 import authFeature from './features/auth';
 import CHDPredictionFeature from './features/prediction';
+import triviaFeature from './features/trivias';
 
 export const createApp = () => {
   return new Elysia()
@@ -14,6 +15,7 @@ export const createApp = () => {
     .use(betterAuthPlugins)
     .use(authFeature)
     .use(CHDPredictionFeature)
+    .use(triviaFeature)
     .get('/', () => ({ status: 'ok', backend: 'tensorflow-wasm' }), {
       detail: {
         summary: 'App Health Check',
