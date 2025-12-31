@@ -87,13 +87,10 @@ describe('Auth Endpoint', () => {
   describe('POST /auth/logout', () => {
     it('should logout successfully', async () => {
       const { data, error, status } = await api.auth.logout.post({
-        $fetch: {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
         $query: {},
-        $headers: {},
+        $headers: {
+          authorization: `Bearer ${token}`,
+        },
       });
 
       expect(status).toBe(200);
@@ -106,12 +103,14 @@ describe('Auth Endpoint', () => {
       const { data, error, status } = await api.auth.logout.post({
         $fetch: {},
         $query: {},
-        $headers: {},
+        $headers: {
+          authorization: ``,
+        },
       });
 
-      expect(status).toBe(401);
+      expect(status).toBe(400);
       expect(error).not.toBeNull();
-      expect(data).toHaveProperty('message', 'Unauthorized');
+      expect(data).toHaveProperty('message', "Token can't be empty");
       expect(data).toHaveProperty('error', true);
     });
 
@@ -123,7 +122,9 @@ describe('Auth Endpoint', () => {
           },
         },
         $query: {},
-        $headers: {},
+        $headers: {
+          authorization: `Bearer invalidtoken`,
+        },
       });
 
       expect(status).toBe(401);

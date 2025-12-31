@@ -1,15 +1,18 @@
-import { Elysia, status } from 'elysia';
 import * as z from 'zod';
 import { signIn } from './sign-in';
 import { signUp } from './sign-up';
 import { signOut } from './sign-out';
-import { signInSchema, signOutSchema, signUpSchema } from './schema';
+import {
+  signInBodySchema,
+  authorizationTokenSchema,
+  signUpBodySchema,
+} from './schema';
 import { openApiPlugins } from '@/plugins/open-api';
 import { loggerPlugins } from '@/plugins/logger';
 import { createRoute } from '@/lib/route';
 import { betterAuthPlugins } from '@/plugins/auth';
 
-const authFeature = createRoute('/auth')
+const authFeature = createRoute('/auth', 'auth')
   .use(openApiPlugins)
   .use(loggerPlugins)
   .use(betterAuthPlugins)
@@ -32,17 +35,20 @@ const authFeature = createRoute('/auth')
       };
     },
     {
-      detail: { description: 'User login endpoint' },
+      detail: {
+        summary: 'Sign In Endpoint',
+        description: 'Endpoint for user authentication and login',
+      },
       tags: ['Auth'],
-      body: signInSchema,
+      body: signInBodySchema,
       response: z.object({
-        message: z.string(),
-        error: z.boolean(),
+        message: z.string().describe('Response message'),
+        error: z.boolean().describe('Indicates if there was an error'),
         data: z.object({
-          id: z.string(),
-          name: z.string(),
-          email: z.email(),
-          token: z.string(),
+          id: z.string().describe('User ID'),
+          name: z.string().describe('User name'),
+          email: z.email().describe('User email'),
+          token: z.string().describe('Authentication token'),
         }),
       }),
     },
@@ -56,31 +62,38 @@ const authFeature = createRoute('/auth')
       return { message: 'Register Success', error: false };
     },
     {
-      detail: { description: 'User registration endpoint' },
+      detail: {
+        summary: 'Sign Up Endpoint',
+        description: 'Endpoint for new user registration',
+      },
       tags: ['Auth'],
-      body: signUpSchema,
+      body: signUpBodySchema,
       response: z.object({
-        message: z.string(),
-        error: z.boolean(),
+        message: z.string().describe('Response message'),
+        error: z.boolean().describe('Indicates if there was an error'),
       }),
     },
   )
   .post(
     '/logout',
-    async () => {
-      //  await signOut({token});
+    async ({ headers }) => {
+      const token = headers.authorization;
+      await signOut(token);
       return { message: 'Logout Success', error: false };
     },
     {
       auth: true,
-      detail: { description: 'User logout endpoint' },
+      detail: {
+        summary: 'Sign Out Endpoint',
+        description: 'Endpoint for user logout',
+      },
       tags: ['Auth'],
-      // headers: z.object({
-      //   authorization: z.string(),
-      // }),
+      headers: z.object({
+        authorization: authorizationTokenSchema,
+      }),
       response: z.object({
-        message: z.string(),
-        error: z.boolean(),
+        message: z.string().describe('Response message'),
+        error: z.boolean().describe('Indicates if there was an error'),
       }),
     },
   );
