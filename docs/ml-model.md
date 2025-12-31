@@ -60,7 +60,7 @@
 
 # Chatbot Model
 
-- Endpoint: **/prediction**
+- Endpoint: **/chat**
 - Method: **POST**
 
 ## Request Header
