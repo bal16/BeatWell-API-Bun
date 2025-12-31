@@ -18,7 +18,7 @@ export const signUpBodySchema = z.object({
 export const authorizationTokenSchema = z
   .string()
   .min(1, "Token can't be empty")
-  .describe('Authorization token');
+  .describe('Authorization token').optional();
 
 export type signInDTO = z.infer<typeof signInBodySchema>;
 
