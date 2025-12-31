@@ -22,6 +22,7 @@
         "error":false,
         "data":[
             {
+                "id": string,
                 "trivia": string
             },
             ...
@@ -35,9 +36,9 @@
 
 ```json
 {
-    "status":404,
+    "status":401,
     "body":{
-        "message":'gagal mendapatkan trivia',
+        "message":'Unauthorized',
         "error":true,
     },
     ...
