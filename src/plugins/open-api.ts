@@ -11,8 +11,8 @@ export const openApiPlugins = new Elysia({ name: 'open-api' }).use(
           description: 'Authentication and user management endpoints',
         },
         {
-          name: 'AI Service',
-          description: 'File upload related endpoints',
+          name: 'AI Services',
+          description: 'AI-powered services endpoints',
         },
         {
           name: 'Health Check',
