@@ -1,8 +1,9 @@
 // import { InvalidCredentialsError } from '@/exceptions/InvalidCredentialsError';
+import { logger } from '@/plugins/logger';
 import { APIError } from 'better-auth/api';
 import Elysia from 'elysia';
 
-export const createRoute = (prefix: string) =>
+export const createRoute = (prefix: string, name: string) =>
   new Elysia({ prefix })
     .error({
       // InvalidCredentialsError,
@@ -19,8 +20,13 @@ export const createRoute = (prefix: string) =>
         case 'NOT_FOUND':
           set.status = Error.status;
           return { message: 'Unknown Page', error: true };
+        case 'VALIDATION':
+          set.status = 400;
+          const message = Error.valueError?.message || 'Validation Error';
+          return { message, error: true };
         default:
           set.status = 500;
+          // logger.error(Error)
           return {
             message: 'Internal Server Error',
             error: true,
