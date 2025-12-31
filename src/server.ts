@@ -1,15 +1,9 @@
 import { createApp } from './app';
+import { env, envSummary } from './env';
 import { logger } from './plugins/logger';
 
-logger.info('⏳ Booting up AI Service...');
-// await aiService.initialize();
 
-const app = createApp();
-
-// 3. Baru Listen Port
-app
-  .listen(3000);
-
-logger.info(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
-);
+createApp().listen(env.PORT, ({ hostname, port, protocol }) => {
+  logger.info(`🦊 Elysia is running at ${protocol}://${hostname}:${port}`);
+  logger.info(envSummary());
+});
