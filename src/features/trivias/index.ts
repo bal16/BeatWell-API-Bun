@@ -27,7 +27,7 @@ const triviaFeature = createRoute('/trivias', 'trivia')
         description: 'Endpoint to retrieve trivia information',
       },
       headers: z.object({
-        Authorization: authorizationTokenSchema,
+        authorization: authorizationTokenSchema,
       }),
       response: z.object({
         message: z.string().describe('Response message'),
