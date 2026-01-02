@@ -13,7 +13,7 @@ const HealthyFoodListFeature = createRoute('/foods', 'foods')
   .get(
     '/',
     async ({ query }) => {
-      const foodList = await getRandomFoods(Number(query.limit));
+      const foodList = await getRandomFoods(query?.limit);
       return {
         message: 'Healthy food list fetched successfully',
         error: false,
@@ -29,8 +29,8 @@ const HealthyFoodListFeature = createRoute('/foods', 'foods')
         tags: ['Healthy Lifestyle'],
       },
       query: z.object({
-        limit: z
-          .string()
+        limit: z.coerce
+          .number<number>()
           .optional()
           .describe('Number of food items to retrieve (default is 6)'),
       }),
