@@ -18,7 +18,7 @@
 {
     "status":200,
     "body":{
-        "message":'berhasil mendapatkan list food',
+        "message":'Healthy food list fetched successfully',
         "error":false,
         "data":[
             {
