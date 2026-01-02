@@ -34,7 +34,8 @@ mock.module('@/plugins/logger', () => ({
 
 mock.module('@/env', () => ({
   env: {
-    PREDICTION_MODEL_URL: 'file://mock/model.json',
+    PREDICTION_MODEL_URL:
+      Bun.env.PREDICTION_MODEL_URL || 'file://mock/model.json',
   },
 }));
 
@@ -75,8 +76,11 @@ describe('PredictionService', () => {
 
     // Verify model loading
     expect(mockTf.loadLayersModel).toHaveBeenCalledWith(
-      'file://mock/model.json',
+      Bun.env.PREDICTION_MODEL_URL || 'file://mock/model.json',
     );
+
+    // Verify tensor initialization (mean and std)
+    expect(mockTf.tensor).toHaveBeenCalledTimes(2);
 
     // Verify prediction
     expect(mockPredict).toHaveBeenCalled();
@@ -114,5 +118,14 @@ describe('PredictionService', () => {
     expect(mockTf.sub).toHaveBeenCalled();
     expect(mockTf.div).toHaveBeenCalled();
     expect(mockTf.tidy).toHaveBeenCalled();
+  });
+
+  it('should throw error if model loading fails', async () => {
+    mockTf.loadLayersModel.mockRejectedValue(new Error('Model load failed'));
+
+    const inputData = new Array(14).fill(0.5);
+    await expect(service.makePrediction(inputData)).rejects.toThrow(
+      'Model load failed',
+    );
   });
 });

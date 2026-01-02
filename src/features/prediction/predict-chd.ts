@@ -1,7 +1,7 @@
 import { predictionService } from '@/services/prediction.service';
 import type { predictionDTO } from './schema';
-import { historyRepository } from '@/repositories/history.repository';
 import { logger } from '@/plugins/logger';
+import { historyService } from '@/services/history.service';
 
 const bmiCalculator = (height: number, weight: number) => {
   return weight / height ** 2;
@@ -28,7 +28,6 @@ const formatInput = (
 
 export const predictCHD = async (dto: predictionDTO, userId: string) => {
   // Calculate BMI
-  logger.debug("HELLOWWWWWW");
   const BMI = bmiCalculator(dto.height, dto.weight);
   const isSmokerAsNumber = dto.cigsPerday > 0 ? 1 : 0;
 
@@ -38,13 +37,11 @@ export const predictCHD = async (dto: predictionDTO, userId: string) => {
   // execute prediction
   const result = await predictionService
     .makePrediction(inputData)
-    // transform to percentage
     .then((r) => Math.round(r * 100));
 
   logger.debug({ result });
-  // save to history
-  await historyRepository.save({ userId, result: `${result}%` });
+  
+  await historyService.record(userId, result);
 
-  // return the result
   return result;
 };
