@@ -1,9 +1,9 @@
 import { logger } from './plugins/logger';
 import { createApp } from './lib/app';
+import { Elysia } from 'elysia';
 
-const app = createApp();
+const app = new Elysia().use(createApp());
 
-export default async function handler(request: Request) {
-  logger.info(`${request.method} ${request.url}`);
-  return app.fetch(request);
-}
+logger.info('Starting the BeatWell API server...');
+
+export default app;
