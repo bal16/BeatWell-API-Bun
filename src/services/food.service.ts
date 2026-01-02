@@ -5,7 +5,7 @@ export class FoodService {
   constructor() {
     this.repository = foodRepository;
   }
-  async getRandomFoods(limit: number) {
+  async getRandoms(limit: number) {
     return await this.repository.getRandom(limit);
   }
 }
