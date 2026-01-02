@@ -17,10 +17,12 @@ const mockUserTable = { id: 'mock_user_id_col' };
 mock.module('@/lib/db/schema', () => ({
   user: mockUserTable,
   trivias: {},
+  healthyFoods: {},
 }));
 
 mock.module('drizzle-orm', () => ({
   eq: mockEq,
+  sql: mock(),
 }));
 
 const { userRepository } = await import('./user.repository');
