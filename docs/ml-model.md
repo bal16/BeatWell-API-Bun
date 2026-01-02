@@ -36,7 +36,7 @@
 {
   "status": 200,
   "body": {
-    "message": "Prediction success",
+    "message": "Question answered successfully",
     "error": false,
     "data": {
       "risk": 0,
@@ -81,7 +81,7 @@
 {
   "status": 200,
   "body": {
-    "message": "Prediction success",
+    "message": "Chat success",
     "error": false,
     "data": "response"
   }

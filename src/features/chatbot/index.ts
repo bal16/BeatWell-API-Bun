@@ -19,7 +19,7 @@ const chatBotFeature = createRoute('/chat', 'chat')
 
       set.status = 200;
       return {
-        message: 'Prediction success',
+        message: 'Question answered successfully',
         error: false,
         data: {
           answer,
