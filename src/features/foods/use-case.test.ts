@@ -35,8 +35,6 @@ describe('getRandomFoods', () => {
     const error = new Error('Database error Occurred');
     mockGetRandoms.mockRejectedValue(error);
 
-    await expect(getRandomFoods(6)).rejects.toThrow(
-      'Database error Occurred',
-    );
+    await expect(getRandomFoods(6)).rejects.toThrow('Database error Occurred');
   });
 });

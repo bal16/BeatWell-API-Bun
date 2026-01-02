@@ -23,7 +23,7 @@ describe('UserService', () => {
       const id = 'user-123';
       const inputs = { name: 'Updated Name' };
 
-      await userService.updateUserById(id, inputs as any);
+      await userService.updateUserById(id, inputs);
 
       expect(mockPatchById).toHaveBeenCalledWith(id, inputs);
     });

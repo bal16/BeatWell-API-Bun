@@ -19,7 +19,7 @@ mock.module('@/lib/db/schema', () => ({
   trivias: {},
   healthyFoods: {},
   histories: {},
-  activities: {}
+  activities: {},
 }));
 
 mock.module('drizzle-orm', () => ({
@@ -45,7 +45,7 @@ describe('UserRepository', () => {
       const eqResult = 'eq-result';
       mockEq.mockReturnValue(eqResult);
 
-      await userRepository.patchById(id, inputs as any);
+      await userRepository.patchById(id, inputs);
 
       expect(mockUpdate).toHaveBeenCalledWith(mockUserTable);
       expect(mockSet).toHaveBeenCalledWith(inputs);

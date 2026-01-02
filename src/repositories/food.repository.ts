@@ -9,9 +9,11 @@ export class FoodRepository {
   }
 
   public async getRandom(limit: number) {
-    return await db.select().from(this.table)
-    .orderBy(sql`RANDOM()`)
-    .limit(limit);
+    return await db
+      .select()
+      .from(this.table)
+      .orderBy(sql`RANDOM()`)
+      .limit(limit);
   }
 }
 

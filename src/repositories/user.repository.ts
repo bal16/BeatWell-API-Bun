@@ -1,6 +1,6 @@
 import type { updateUserDTO } from '../features/users/schema';
 import { db } from '../lib/db/client';
-import { trivias, user } from '../lib/db/schema';
+import { user } from '../lib/db/schema';
 import { eq } from 'drizzle-orm';
 
 export class UserRepository {

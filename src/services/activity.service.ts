@@ -1,4 +1,7 @@
-import { activityRepository, ActivityRepository } from '../repositories/activity.repository';
+import {
+  activityRepository,
+  ActivityRepository,
+} from '../repositories/activity.repository';
 
 export class ActivityService {
   private repository: ActivityRepository;

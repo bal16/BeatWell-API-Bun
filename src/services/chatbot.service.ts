@@ -4,8 +4,8 @@ import { env } from '../env';
 import { logger } from '../plugins/logger';
 
 // Type Definitions
-type TIntents = { tag: string; responses: string[] };
-type TIntentFile = { intents: TIntents[] };
+// type TIntents = { tag: string; responses: string[] };
+// type TIntentFile = { intents: TIntents[] };
 
 export class ChatbotService {
   private model: LayersModel | null = null;

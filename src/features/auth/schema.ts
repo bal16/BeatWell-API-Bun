@@ -17,7 +17,7 @@ export const signUpBodySchema = z.object({
 
 export const authorizationTokenSchema = z
   .string()
-  .min(1, "Token can't be empty")
+  .min(1, 'Token can\'t be empty')
   .describe('Authorization token `BEARER <jwt_token>`')
   .optional();
 

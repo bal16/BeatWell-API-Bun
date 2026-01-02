@@ -36,7 +36,7 @@ describe('User Use Cases', () => {
       const userId = 'user-123';
       const inputs = { name: 'Updated Name' };
 
-      await updateCurrentUser(userId, inputs as any);
+      await updateCurrentUser(userId, inputs);
 
       expect(mockUpdateUserById).toHaveBeenCalledWith(userId, inputs);
     });

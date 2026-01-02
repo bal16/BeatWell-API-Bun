@@ -1,4 +1,4 @@
-import { InvalidCredentialsError } from '../exceptions/InvalidCredentialsError';
+// import { InvalidCredentialsError } from '../exceptions/InvalidCredentialsError';
 import { auth } from '../lib/auth';
 import { logger } from '../plugins/logger';
 
@@ -37,12 +37,12 @@ export class AuthService {
 
   async signOut(token: string) {
     try {
-      this.logger.debug(`AuthService: Signing out user with token.`);
+      this.logger.debug('AuthService: Signing out user with token.');
       return await this.authApi.signOut({
         headers: { Authorization: `Bearer ${token}` },
       });
     } catch (error) {
-      this.logger.error(`AuthService: Error signing out user with token`);
+      this.logger.error('AuthService: Error signing out user with token');
       throw error;
     }
   }

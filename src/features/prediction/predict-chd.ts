@@ -40,7 +40,7 @@ export const predictCHD = async (dto: predictionDTO, userId: string) => {
     .then((r) => Math.round(r * 100));
 
   logger.debug({ result });
-  
+
   await historyService.record(userId, result);
 
   return result;

@@ -84,7 +84,7 @@ const usersFeature = createRoute('/users', 'users')
     },
     {
       detail: {
-        summary: "Get Current User's CHD Risk Histories Endpoint",
+        summary: 'Get Current User\'s CHD Risk Histories Endpoint',
         description:
           'Endpoint to retrieve the histories of checked CHD risk associated with the current authenticated user.',
       },

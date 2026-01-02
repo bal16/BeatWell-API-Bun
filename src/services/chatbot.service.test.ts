@@ -10,8 +10,8 @@ const mockModel = {
 };
 
 const mockTf = {
-  tensor2d: mock((arr: any) => arr),
-  tidy: mock((fn: Function) => fn()),
+  tensor2d: mock((arr: []) => arr),
+  tidy: mock((fn) => fn()),
   getBackend: mock(() => 'cpu'),
   setBackend: mock(() => Promise.resolve()),
   ready: mock(() => Promise.resolve()),
@@ -43,7 +43,7 @@ mock.module('@/env', () => ({
 }));
 
 // Mock fetch globally
-let originalFetch = global.fetch;
+const originalFetch = global.fetch;
 const mockFetch = mock<typeof originalFetch>();
 
 // 2. Import the service dynamically
@@ -63,7 +63,7 @@ describe('ChatbotService', () => {
     mockLogger.error.mockClear();
 
     mockFetch.mockReset();
-    // @ts-ignore mocking global fetch for tests
+    // @ts-expect-error mocking global fetch for tests
     global.fetch = mockFetch;
 
     // Create fresh instance
@@ -80,7 +80,7 @@ describe('ChatbotService', () => {
 
   it('should load assets and predict correctly on first call', async () => {
     // Mock fetch responses
-    // @ts-ignore access private property for test
+    // @ts-expect-error access private property for test
     mockFetch.mockImplementation(async (url: string) => {
       if (url.includes('intents')) {
         return {
@@ -128,7 +128,7 @@ describe('ChatbotService', () => {
   });
 
   it('should not reload assets if already loaded', async () => {
-    // @ts-ignore access private property for test
+    // @ts-expect-error access private property for test
     mockFetch.mockImplementation(async (url: string) => {
       if (url.includes('intents'))
         return { json: async () => ({ intents: [] }) };
@@ -148,7 +148,7 @@ describe('ChatbotService', () => {
   });
 
   it('should handle unknown intent (fallback)', async () => {
-    // @ts-ignore access private property for test
+    // @ts-expect-error access private property for test
     // Mock data
     mockFetch.mockImplementation(async (url: string) => {
       if (url.includes('intents')) {
@@ -186,7 +186,7 @@ describe('ChatbotService', () => {
   it('should not set backend if already wasm', async () => {
     mockTf.getBackend.mockReturnValue('wasm');
 
-    // @ts-ignore access private property for test
+    // @ts-expect-error access private property for test
     mockFetch.mockImplementation(async (url: string) => {
       if (url.includes('intents'))
         return { json: async () => ({ intents: [] }) };

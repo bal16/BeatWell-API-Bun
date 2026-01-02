@@ -3,7 +3,7 @@ import { APIError } from 'better-auth/api';
 import Elysia from 'elysia';
 
 export const createRoute = (prefix: string, name: string) =>
-  new Elysia({ prefix })
+  new Elysia({ prefix, name })
     .error({
       // InvalidCredentialsError,
       APIError,
@@ -19,10 +19,11 @@ export const createRoute = (prefix: string, name: string) =>
         case 'NOT_FOUND':
           set.status = Error.status;
           return { message: 'Unknown Page', error: true };
-        case 'VALIDATION':
+        case 'VALIDATION': {
           set.status = 400;
           const message = Error.valueError?.message || 'Validation Error';
           return { message, error: true };
+        }
         default:
           set.status = 500;
           // logger.error(Error)
