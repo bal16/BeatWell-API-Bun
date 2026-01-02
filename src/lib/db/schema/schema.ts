@@ -1,12 +1,12 @@
 import { relations } from 'drizzle-orm';
 import { pgTable, text, timestamp, boolean, index } from 'drizzle-orm/pg-core';
-import { createId } from '@paralleldrive/cuid2';
+// import { createId } from '@paralleldrive/cuid2';
 import { user } from './auth-schema';
 
 export const activities = pgTable('activities', {
   id: text('id')
     .primaryKey()
-    .$defaultFn(() => createId()),
+    .$defaultFn(() => Bun.randomUUIDv7()),
   name: text('name').notNull(),
   image: text('image').notNull(),
   detail: text('detail').notNull(),
@@ -17,7 +17,7 @@ export const histories = pgTable(
   {
     id: text('id')
       .primaryKey()
-      .$defaultFn(() => createId()),
+      .$defaultFn(() => Bun.randomUUIDv7()),
     userId: text('user_id')
       .notNull()
       .references(() => user.id, { onDelete: 'cascade' }),
@@ -30,7 +30,7 @@ export const histories = pgTable(
 export const trivias = pgTable('trivias', {
   id: text('id')
     .primaryKey()
-    .$defaultFn(() => createId()),
+    .$defaultFn(() => Bun.randomUUIDv7()),
   trivia: text('trivia').notNull(),
 });
 
@@ -39,7 +39,7 @@ export const healthProfiles = pgTable(
   {
     id: text('id')
       .primaryKey()
-      .$defaultFn(() => createId()),
+      .$defaultFn(() => Bun.randomUUIDv7()),
     userId: text('user_id')
       .notNull()
       .references(() => user.id, { onDelete: 'cascade' }),
@@ -50,7 +50,7 @@ export const healthProfiles = pgTable(
 export const healthyFoods = pgTable('healthy_foods', {
   id: text('id')
     .primaryKey()
-    .$defaultFn(() => createId()),
+    .$defaultFn(() => Bun.randomUUIDv7()),
   name: text('name').notNull(),
   recipe: text('recipe').notNull(),
   image: text('image').notNull(),
