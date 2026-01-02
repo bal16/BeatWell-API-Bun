@@ -1,7 +1,9 @@
 # History
 
+## Get Current User Risk Histories
+
 - Method: **GET**
-- Endpoint: **/users/{id}/histories**
+- Endpoint: **/users/histories**
 - Headers:
 
 ```json
@@ -10,60 +12,126 @@
 }
 ```
 
-## Responses (Success)
+### Responses (Success)
 
 ```json
 {
     "status":200,
     "body":{
-        "message":'berhasil mendapatkan list history',
+        "message":'User histories retrieved successfully',
         "error":false,
         "data":[
             {
                 "id":string,
-                "result":boolean,
+                "result":string,
                 "last_checked":date
             },
             ...
         ]
     },
-    ...
+
 }
 ```
 
-## Responses (Failed)
+### Responses (Failed)
 
 ```json
 {
-    "status":400,
-    "body":{
-        "message":'gagal mendapatkan list history',
-        "error":true,
-    },
-    ...
-}
-```
-```json
-{
-    "status":401,
-    "body":{
-        "message":'unauthorized',
-        "error":true,
-    },
-    ...
+  "status": 401,
+  "body": {
+    "message": "Unauthorized",
+    "error": true
+  }
 }
 ```
 
-## Responses (Empty)
+### Responses (Empty)
+
+```json
+{
+  "status": 200,
+  "body": {
+    "message": "User histories retrieved successfully",
+    "error": false,
+    "data": []
+  }
+}
+```
+
+## Get History By ID
+
+- Method: **GET**
+- Endpoint: **/histories/:id**
+- Headers:
+
+```json
+{
+  "Authorizaton": "access_token"
+}
+```
+
+### Responses (Success)
 
 ```json
 {
     "status":200,
     "body":{
-        "message":'berhasil mendapatkan list history',
+        "message":'History fetched successfully',
         "error":false,
-        "data":[]
+        "data":
+            {
+                "id":string,
+                "result":string,
+                "last_checked":date
+            },
     },
-    ...
+}
+```
+
+### Responses (Failed)
+
+```json
+{
+  "status": 401,
+  "body": {
+    "message": "Unauthorized",
+    "error": true
+  }
+}
+```
+
+## Delete History By ID
+
+- Method: **DELETE**
+- Endpoint: **/histories/:id**
+- Headers:
+
+```json
+{
+  "Authorizaton": "access_token"
+}
+```
+
+### Responses (Success)
+
+```json
+{
+  "status": 200,
+  "body": {
+    "message": "History deleted successfully",
+    "error": false
+  }
+}
+```
+
+### Responses (Failed)
+
+```json
+{
+  "status": 401,
+  "body": {
+    "message": "Unauthorized",
+    "error": true
+  }
 }
 ```
