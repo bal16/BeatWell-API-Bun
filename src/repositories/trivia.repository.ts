@@ -1,6 +1,5 @@
 import { db } from '@/lib/db/client';
 import { trivias } from '@/lib/db/schema';
-import { eq } from 'drizzle-orm';
 
 export class TriviaRepository {
   private table: typeof trivias;
