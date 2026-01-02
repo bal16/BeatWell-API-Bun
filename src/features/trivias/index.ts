@@ -15,7 +15,7 @@ const triviaFeature = createRoute('/trivias', 'trivia')
     async () => {
       const trivia = await getTrivias();
       return {
-        message: 'Trivia question fetched successfully',
+        message: 'Trivias fetched successfully',
         error: false,
         data: trivia,
       };

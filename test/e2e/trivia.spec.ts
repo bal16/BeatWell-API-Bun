@@ -70,10 +70,7 @@ describe('Trivia Endpoint', () => {
 
       expect(status).toBe(200);
       expect(error).toBeNull();
-      expect(data).toHaveProperty(
-        'message',
-        'Trivia question fetched successfully',
-      );
+      expect(data).toHaveProperty('message', 'Trivias fetched successfully');
       expect(data).toHaveProperty('error', false);
       expect(data).toHaveProperty('data');
     });
