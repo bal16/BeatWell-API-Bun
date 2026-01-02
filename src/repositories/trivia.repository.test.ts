@@ -15,6 +15,7 @@ mock.module('@/lib/db/schema', () => ({
   trivias: mockTrivias,
   healthyFoods: {},
   user: {},
+  histories: {},
 }));
 
 const { triviaRepository } = await import('./trivia.repository');

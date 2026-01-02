@@ -18,6 +18,7 @@ mock.module('@/lib/db/schema', () => ({
   user: mockUserTable,
   trivias: {},
   healthyFoods: {},
+  histories: {},
 }));
 
 mock.module('drizzle-orm', () => ({
