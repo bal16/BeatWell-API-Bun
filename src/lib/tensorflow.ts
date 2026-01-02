@@ -1,7 +1,7 @@
 import * as tfCore from '@tensorflow/tfjs-core';
 import * as tfLayers from '@tensorflow/tfjs-layers';
-import '@tensorflow/tfjs-backend-wasm';
 
+// Compose tf at import time (lightweight)
 const tf = {
   ...tfCore,
   ...tfLayers,

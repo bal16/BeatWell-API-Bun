@@ -28,8 +28,9 @@ export class PredictionService {
   private async ensureLoaded() {
     if (this.model) return;
 
-    // Set backend WASM (hanya sekali)
+    // Lazily register WASM backend, then switch
     if (tf.getBackend() !== 'wasm') {
+      await import('@tensorflow/tfjs-backend-wasm');
       await tf.setBackend('wasm');
       await tf.ready();
     }
@@ -40,6 +41,11 @@ export class PredictionService {
     }
     if (!this.trainingStd) {
       this.trainingStd = tf.tensor(this.trainingStdValues);
+    }
+
+    // Validate env at use-time (clear error instead of failing module import)
+    if (!this.modelUrl || this.modelUrl.length === 0) {
+      throw new Error('PREDICTION_MODEL_URL is required');
     }
 
     this.model = await tf.loadLayersModel(this.modelUrl);

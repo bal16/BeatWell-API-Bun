@@ -11,31 +11,40 @@ export class ChatbotService {
   private model: LayersModel | null = null;
   private tokenizer = new natural.WordTokenizer();
 
-  private intents: TIntents[] = [];
+  private intents: { tag: string; responses: string[] }[] = [];
   private words: string[] = [];
   private classes: string[] = [];
 
   private async ensureLoaded() {
     if (this.model) return;
 
+    // Lazily register WASM backend, then switch
     if (tf.getBackend() !== 'wasm') {
+      await import('@tensorflow/tfjs-backend-wasm');
       await tf.setBackend('wasm');
       await tf.ready();
     }
 
     logger.info('⏳ Loading Chatbot Assets...');
 
+    // Validate env at use-time
+    if (
+      !env.CHATBOT_MODEL_URL ||
+      !env.CHATBOT_INTENTS_URL ||
+      !env.CHATBOT_WORDS_URL ||
+      !env.CHATBOT_CLASSES_URL
+    ) {
+      throw new Error('CHATBOT_* env variables are required');
+    }
+
     // Load Model
     this.model = await tf.loadLayersModel(env.CHATBOT_MODEL_URL);
 
-    // Load JSON Data
-    // this.intents = (await Bun.file(env.CHATBOT_INTENTS_URL).json()).intents;
-    // this.words = await Bun.file(env.CHATBOT_WORDS_URL).json();
-    // this.classes = await Bun.file(env.CHATBOT_CLASSES_URL).json();
+    // Load JSON Data via fetch (serverless-friendly)
     try {
       const rawIntents = (await fetch(env.CHATBOT_INTENTS_URL).then((res) =>
         res.json(),
-      )) as TIntentFile;
+      )) as { intents: { tag: string; responses: string[] }[] };
       this.intents = rawIntents.intents;
       this.words = await fetch(env.CHATBOT_WORDS_URL).then((res) => res.json());
       this.classes = await fetch(env.CHATBOT_CLASSES_URL).then((res) =>

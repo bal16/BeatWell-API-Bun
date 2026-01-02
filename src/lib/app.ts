@@ -1,13 +1,13 @@
 import { Elysia } from 'elysia';
 import { corsPlugins } from '../plugins/cors';
-import { loggerPlugins } from '../plugins/logger';
+import { loggerPlugins, logger } from '../plugins/logger';
 import { openApiPlugins } from '../plugins/open-api';
 import { betterAuthPlugins } from '../plugins/auth';
 import authFeature from '../features/auth';
 import triviaFeature from '../features/trivias';
 import usersFeature from '../features/users';
-// import CHDPredictionFeature from '../features/prediction';
-// import chatBotFeature from '../features/chatbot';
+import CHDPredictionFeature from '../features/prediction';
+import chatBotFeature from '../features/chatbot';
 import HealthyFoodListFeature from '../features/foods';
 import historyFeatures from '../features/histories';
 import activitiesFeatures from '../features/activities';
@@ -21,11 +21,15 @@ export const createApp = () => {
     .use(authFeature)
     .use(triviaFeature)
     .use(usersFeature)
-    // .use(CHDPredictionFeature)
-    // .use(chatBotFeature)
+    .use(CHDPredictionFeature)
+    .use(chatBotFeature)
     .use(HealthyFoodListFeature)
     .use(historyFeatures)
     .use(activitiesFeatures)
+    .onStart(() => {
+      // No heavy work here; just log readiness
+      logger.info('App initialized.');
+    })
     .get('/', () => ({ status: 'ok', backend: 'tensorflow-wasm' }), {
       detail: {
         summary: 'App Health Check',
