@@ -19,6 +19,7 @@ mock.module('@/lib/db/schema', () => ({
   trivias: {},
   healthyFoods: {},
   histories: {},
+  activities: {}
 }));
 
 mock.module('drizzle-orm', () => ({

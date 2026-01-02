@@ -12,13 +12,13 @@ mock.module('@/lib/db/client', () => ({
   },
 }));
 
-const mockHealthyFoods = { name: 'healthy_foods_table' };
+const mockActivities = { name: 'activities_table' };
 mock.module('@/lib/db/schema', () => ({
-  healthyFoods: mockHealthyFoods,
+  activities: mockActivities,
   trivias: {},
   user: {},
   histories: {},
-  activities: {},
+  healthyFoods: {},
 }));
 
 mock.module('drizzle-orm', () => ({
@@ -26,9 +26,9 @@ mock.module('drizzle-orm', () => ({
   eq: mock(),
 }));
 
-const { foodRepository } = await import('./food.repository');
+const { activityRepository } = await import('./activity.repository');
 
-describe('FoodRepository', () => {
+describe('ActivityRepository', () => {
   beforeEach(() => {
     mockSelect.mockClear();
     mockFrom.mockClear();
@@ -43,10 +43,9 @@ describe('FoodRepository', () => {
       const expectedResult = [
         {
           id: '1',
-          name: 'Apple',
-          recipe: 'Eat it',
-          image: 'url',
-          ingredient: 'Apple',
+          name: 'Running',
+          image: 'running.png',
+          detail: 'Jogging or running for exercise',
         },
       ];
       const mockSqlReturn = 'SQL_RANDOM';
@@ -54,10 +53,10 @@ describe('FoodRepository', () => {
       mockLimit.mockResolvedValue(expectedResult);
       mockSql.mockReturnValue(mockSqlReturn);
 
-      const result = await foodRepository.getRandom(limit);
+      const result = await activityRepository.getRandom(limit);
 
       expect(mockSelect).toHaveBeenCalled();
-      expect(mockFrom).toHaveBeenCalledWith(mockHealthyFoods);
+      expect(mockFrom).toHaveBeenCalledWith(mockActivities);
       expect(mockSql).toHaveBeenCalled();
       expect(mockOrderBy).toHaveBeenCalledWith(mockSqlReturn);
       expect(mockLimit).toHaveBeenCalledWith(limit);

@@ -23,6 +23,7 @@ mock.module('@/lib/db/schema', () => ({
   user: {},
   trivias: {},
   healthyFoods: {},
+  activities: {},
 }));
 
 mock.module('drizzle-orm', () => ({
@@ -46,7 +47,9 @@ describe('HistoryRepository', () => {
   describe('findByUserId', () => {
     it('should return histories for a user', async () => {
       const userId = 'user-123';
-      const expectedResult = [{ id: '1', userId, result: 'Good', createdAt: new Date() }];
+      const expectedResult = [
+        { id: '1', userId, result: 'Good', createdAt: new Date() },
+      ];
       const eqResult = 'eq-result';
 
       mockEq.mockReturnValue(eqResult);
@@ -65,7 +68,12 @@ describe('HistoryRepository', () => {
   describe('findById', () => {
     it('should return a single history item', async () => {
       const id = 'history-123';
-      const expectedItem = { id, userId: 'user-1', result: 'Good', createdAt: new Date() };
+      const expectedItem = {
+        id,
+        userId: 'user-1',
+        result: 'Good',
+        createdAt: new Date(),
+      };
       const eqResult = 'eq-result';
 
       mockEq.mockReturnValue(eqResult);

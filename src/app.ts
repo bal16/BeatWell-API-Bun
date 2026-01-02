@@ -10,6 +10,7 @@ import usersFeature from './features/users';
 import chatBotFeature from './features/chatbot';
 import HealthyFoodListFeature from './features/foods';
 import historyFeatures from './features/histories';
+import activitiesFeatures from './features/activities';
 
 export const createApp = () => {
   return new Elysia()
@@ -24,6 +25,7 @@ export const createApp = () => {
     .use(chatBotFeature)
     .use(HealthyFoodListFeature)
     .use(historyFeatures)
+    .use(activitiesFeatures)
     .get('/', () => ({ status: 'ok', backend: 'tensorflow-wasm' }), {
       detail: {
         summary: 'App Health Check',

@@ -1,7 +1,7 @@
 # Activity Endpoint
 
 - Method: **GET**
-- Endpoint: **/activity**
+- Endpoint: **/activities**
 - Headers:
 
 ```json
@@ -16,7 +16,7 @@
 {
     "status":200,
     "body":{
-        "message":'berhasil mendapatkan  activity',
+        "message":'Activities fetched successfully',
         "error":false,
         "data":{
                 "id":string,
