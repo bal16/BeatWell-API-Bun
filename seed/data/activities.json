@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Jalan Santai",
+    "image": "https://storage.cloud.google.com/activities_image/Jalan%20Santai.png",
+    "detail": "Aktivitas berjalan dengan santai di sekitar rumah atau halaman untuk menjaga kebugaran dan relaksasi."
+  },
+  {
+    "name": "Jalan di tempat",
+    "image": "https://storage.googleapis.com/activities_image/Jalan%20di%20tempat.png",
+    "detail": "Berjalan tanpa berpindah tempat, cocok untuk meningkatkan sirkulasi darah dan bisa dilakukan kapan saja."
+  },
+  {
+    "name": "Naik turun tangga",
+    "image": "https://storage.googleapis.com/activities_image/Naik%20turun%20tangga.png",
+    "detail": "Berjalan naik dan turun tangga untuk melatih kekuatan kaki dan meningkatkan daya tahan tubuh."
+  },
+  {
+    "name": "Chair dips",
+    "image": "https://storage.googleapis.com/activities_image/chair%20dips.png",
+    "detail": "Latihan untuk otot lengan menggunakan kursi stabil. Turunkan tubuh perlahan dengan tangan menopang di kursi, lalu dorong kembali ke posisi semula."
+  },
+  {
+    "name": "Angkat beban ringan",
+    "image": "https://storage.googleapis.com/activities_image/angkat%20beban%20ringan.png",
+    "detail": "Gunakan benda ringan seperti botol air untuk melatih otot lengan dan bahu dengan mengangkatnya secara perlahan."
+  },
+  {
+    "name": "Squat",
+    "image": "https://storage.googleapis.com/activities_image/squat.png",
+    "detail": "Latihan sederhana dengan berdiri dan menurunkan tubuh seperti posisi duduk untuk melatih otot kaki dan bokong."
+  },
+  {
+    "name": "Jumping Jacks",
+    "image": "https://storage.googleapis.com/activities_image/Jumping%20Jacks.png",
+    "detail": "Gerakan melompat sambil membuka tangan dan kaki, lalu kembali ke posisi awal untuk meningkatkan kebugaran kardiovaskular."
+  },
+  {
+    "name": "High Knee",
+    "image": "https://storage.googleapis.com/activities_image/Hiigh%20Knee.png",
+    "detail": "Latihan kardio dengan mengangkat lutut setinggi mungkin secara bergantian sambil menjaga ritme cepat."
+  },
+  {
+    "name": "jump ropes",
+    "image": "https://storage.googleapis.com/activities_image/Lompat%20Tali.png",
+    "detail": "Melakukan gerakan lompat tali tanpa menggunakan alat, efektif untuk melatih koordinasi dan stamina."
+  },
+  {
+    "name": "Senam",
+    "image": "https://storage.googleapis.com/activities_image/Senam.png",
+    "detail": "Kegiatan senam selama 10 menit untuk kesehatan tubuh anda."
+  }
+]
