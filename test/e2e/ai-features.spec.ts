@@ -172,7 +172,7 @@ describe('AI Features Endpoint', () => {
 
       expect(status).toBe(200);
       expect(error).toBeNull();
-      expect(data).toHaveProperty('message', 'Prediction success');
+      expect(data).toHaveProperty('message', 'Question answered successfully');
       expect(data).toHaveProperty('data.answer');
       expect(typeof data!.data.answer).toBe('string');
       expect(data).toHaveProperty('error', false);
