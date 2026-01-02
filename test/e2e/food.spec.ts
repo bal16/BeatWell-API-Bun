@@ -65,6 +65,7 @@ describe('Healthy Food List Endpoint', () => {
         $headers: {
           authorization: `Bearer ${token}`,
         },
+        // @ts-ignore ts-expect-error
         $query: {},
       });
 
@@ -86,6 +87,7 @@ describe('Healthy Food List Endpoint', () => {
           authorization: `Bearer ${token}`,
         },
         $query: {
+          // @ts-ignore ts-expect-error
           limit: '5',
         },
       });
@@ -102,6 +104,7 @@ describe('Healthy Food List Endpoint', () => {
 
     it('should fail to fetch healthy food list without token', async () => {
       const { data, status } = await api.foods.get({
+        // @ts-ignore ts-expect-error
         $query: {},
         $headers: {},
       });

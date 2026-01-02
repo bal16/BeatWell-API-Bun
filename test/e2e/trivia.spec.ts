@@ -65,6 +65,7 @@ describe('Trivia Endpoint', () => {
         $headers: {
           authorization: `Bearer ${token}`,
         },
+        // @ts-ignore ts-expect-error
         $query: {},
       });
 
@@ -77,6 +78,7 @@ describe('Trivia Endpoint', () => {
 
     it('should fail to fetch trivia questions without token', async () => {
       const { data, status } = await api.trivias.get({
+        // @ts-ignore ts-expect-error
         $query: {},
         $headers: {},
       });

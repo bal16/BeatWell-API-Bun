@@ -6,7 +6,6 @@ import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import * as schema from '@/lib/db/schema';
 import { logger } from '@/plugins/logger';
 import type { predictionDTO } from '@/features/prediction/schema';
-import { desc, eq } from 'drizzle-orm';
 
 const app = createApp().listen(3000);
 const api = edenTreaty<typeof app>('http://localhost:3000');

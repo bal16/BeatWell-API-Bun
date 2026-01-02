@@ -37,11 +37,11 @@ describe('FoodService', () => {
     });
 
     it('should propagate errors from repository', async () => {
-      const error = new Error('Database connection failed');
+      const error = new Error('Database error Occurred');
       mockGetRandom.mockRejectedValue(error);
 
       await expect(foodService.getRandoms(5)).rejects.toThrow(
-        'Database connection failed',
+        'Database error Occurred',
       );
     });
   });
