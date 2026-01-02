@@ -1,6 +1,6 @@
-import { InvalidCredentialsError } from '@/exceptions/InvalidCredentialsError';
-import { auth } from '@/lib/auth';
-import { logger } from '@/plugins/logger';
+import { InvalidCredentialsError } from '../exceptions/InvalidCredentialsError';
+import { auth } from '../lib/auth';
+import { logger } from '../plugins/logger';
 
 export class AuthService {
   private authApi = auth.api;

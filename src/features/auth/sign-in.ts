@@ -1,4 +1,4 @@
-import { authService } from '@/services/auth.service';
+import { authService } from '../../services/auth.service';
 import type { signInDTO } from './schema';
 
 export const signIn = async ({ email, password }: signInDTO) => {

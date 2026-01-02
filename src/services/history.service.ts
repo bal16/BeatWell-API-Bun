@@ -1,7 +1,7 @@
 import {
   historyRepository,
   HistoryRepository,
-} from '@/repositories/history.repository';
+} from '../repositories/history.repository';
 
 export class HistoryService {
   private repository: HistoryRepository;

@@ -1,5 +1,5 @@
-import { db } from '@/lib/db/client';
-import { healthyFoods } from '@/lib/db/schema';
+import { db } from '../lib/db/client';
+import { healthyFoods } from '../lib/db/schema';
 import { sql } from 'drizzle-orm';
 
 export class FoodRepository {

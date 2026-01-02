@@ -1,7 +1,7 @@
-import tf, { type LayersModel, type Tensor } from '@/lib/tensorflow';
+import tf, { type LayersModel, type Tensor } from '../lib/tensorflow';
 import natural from 'natural';
-import { env } from '@/env';
-import { logger } from '@/plugins/logger';
+import { env } from '../env';
+import { logger } from '../plugins/logger';
 
 // Type Definitions
 type TIntents = { tag: string; responses: string[] };

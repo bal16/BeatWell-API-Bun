@@ -1,4 +1,4 @@
-import { userService } from '@/services/user.service';
+import { userService } from '../../services/user.service';
 import type { updateUserDTO } from './schema';
 
 export const updateCurrentUser = async (

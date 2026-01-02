@@ -1,4 +1,4 @@
-import { env } from '@/env';
+import { env } from '../env';
 import { wrap } from '@bogeychan/elysia-logger';
 import { Elysia } from 'elysia';
 import pino from 'pino';

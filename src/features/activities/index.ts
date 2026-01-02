@@ -1,8 +1,8 @@
 import * as z from 'zod';
-import { createRoute } from '@/lib/route';
-import { betterAuthPlugins } from '@/plugins/auth';
-import { loggerPlugins } from '@/plugins/logger';
-import { openApiPlugins } from '@/plugins/open-api';
+import { createRoute } from '../../lib/route';
+import { betterAuthPlugins } from '../../plugins/auth';
+import { loggerPlugins } from '../../plugins/logger';
+import { openApiPlugins } from '../../plugins/open-api';
 import { getRandomActivities } from './get-random-activities';
 
 const activitiesFeatures = createRoute('/activities', 'activities')

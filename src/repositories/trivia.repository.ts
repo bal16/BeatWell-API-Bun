@@ -1,5 +1,5 @@
-import { db } from '@/lib/db/client';
-import { trivias } from '@/lib/db/schema';
+import { db } from '../lib/db/client';
+import { trivias } from '../lib/db/schema';
 
 export class TriviaRepository {
   private table: typeof trivias;

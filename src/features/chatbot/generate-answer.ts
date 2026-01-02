@@ -1,4 +1,4 @@
-import { chatbotService } from '@/services/chatbot.service';
+import { chatbotService } from '../../services/chatbot.service';
 import type { questionType } from './schema';
 
 export const generateAnswer = async (

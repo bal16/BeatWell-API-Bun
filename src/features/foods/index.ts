@@ -1,8 +1,8 @@
 import * as z from 'zod';
-import { createRoute } from '@/lib/route';
-import { betterAuthPlugins } from '@/plugins/auth';
-import { loggerPlugins } from '@/plugins/logger';
-import { openApiPlugins } from '@/plugins/open-api';
+import { createRoute } from '../../lib/route';
+import { betterAuthPlugins } from '../../plugins/auth';
+import { loggerPlugins } from '../../plugins/logger';
+import { openApiPlugins } from '../../plugins/open-api';
 import { authorizationTokenSchema } from '../auth/schema';
 import { getRandomFoods } from './get-random-foods';
 

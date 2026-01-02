@@ -1,4 +1,4 @@
-import { historyService } from '@/services/history.service';
+import { historyService } from '../../services/history.service';
 
 export const getHistoryById = async (id: string) => {
   // Placeholder implementation

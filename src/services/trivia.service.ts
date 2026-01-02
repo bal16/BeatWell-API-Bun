@@ -1,7 +1,7 @@
 import {
   triviaRepository,
   TriviaRepository,
-} from '@/repositories/trivia.repository';
+} from '../repositories/trivia.repository';
 
 export class TriviaService {
   private repository: TriviaRepository;

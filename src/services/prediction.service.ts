@@ -1,6 +1,6 @@
-import { env } from '@/env';
-import tf, { type LayersModel, type Tensor } from '@/lib/tensorflow';
-import { logger } from '@/plugins/logger';
+import { env } from '../env';
+import tf, { type LayersModel, type Tensor } from '../lib/tensorflow';
+import { logger } from '../plugins/logger';
 
 export class PredictionService {
   private model: LayersModel | null = null;

@@ -7,10 +7,10 @@ import {
   authorizationTokenSchema,
   signUpBodySchema,
 } from './schema';
-import { openApiPlugins } from '@/plugins/open-api';
-import { loggerPlugins } from '@/plugins/logger';
-import { createRoute } from '@/lib/route';
-import { betterAuthPlugins } from '@/plugins/auth';
+import { openApiPlugins } from '../../plugins/open-api';
+import { loggerPlugins } from '../../plugins/logger';
+import { createRoute } from '../../lib/route';
+import { betterAuthPlugins } from '../../plugins/auth';
 
 const authFeature = createRoute('/auth', 'auth')
   .use(openApiPlugins)

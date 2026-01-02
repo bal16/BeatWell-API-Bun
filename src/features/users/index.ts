@@ -1,12 +1,12 @@
 import * as z from 'zod';
-import { openApiPlugins } from '@/plugins/open-api';
-import { loggerPlugins } from '@/plugins/logger';
-import { createRoute } from '@/lib/route';
-import { betterAuthPlugins } from '@/plugins/auth';
+import { openApiPlugins } from '../../plugins/open-api';
+import { loggerPlugins } from '../../plugins/logger';
+import { createRoute } from '../../lib/route';
+import { betterAuthPlugins } from '../../plugins/auth';
 import { authorizationTokenSchema } from '../auth/schema';
 import { updateCurrentUserBodySchema } from './schema';
 import { updateCurrentUser } from './update-current-user';
-import { auth } from '@/lib/auth';
+import { auth } from '../../lib/auth';
 import { deleteCurrentUser } from './delete-current-user';
 import { getCurrentUserHistories } from './get-current-user-histories';
 

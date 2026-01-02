@@ -1,8 +1,8 @@
-import type { updateUserDTO } from '@/features/users/schema';
+import type { updateUserDTO } from '../features/users/schema';
 import {
   userRepository,
   type UserRepository,
-} from '@/repositories/user.repository';
+} from '../repositories/user.repository';
 
 export class UserService {
   private repository: UserRepository;

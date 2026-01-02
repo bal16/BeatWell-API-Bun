@@ -1,4 +1,4 @@
-import { foodRepository, FoodRepository } from '@/repositories/food.repository';
+import { foodRepository, FoodRepository } from '../repositories/food.repository';
 
 export class FoodService {
   private repository: FoodRepository;

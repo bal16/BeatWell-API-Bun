@@ -1,5 +1,4 @@
 // import { InvalidCredentialsError } from '@/exceptions/InvalidCredentialsError';
-import { logger } from '@/plugins/logger';
 import { APIError } from 'better-auth/api';
 import Elysia from 'elysia';
 

@@ -1,11 +1,11 @@
-import { createRoute } from '@/lib/route';
-import { betterAuthPlugins } from '@/plugins/auth';
-import { loggerPlugins } from '@/plugins/logger';
-import { openApiPlugins } from '@/plugins/open-api';
+import { createRoute } from '../../lib/route';
+import { betterAuthPlugins } from '../../plugins/auth';
+import { loggerPlugins } from '../../plugins/logger';
+import { openApiPlugins } from '../../plugins/open-api';
 import { predictionBodySchema } from './schema';
 import * as z from 'zod';
 import { predictCHD } from './predict-chd';
-import { auth } from '@/lib/auth';
+import { auth } from '../../lib/auth';
 import { authorizationTokenSchema } from '../auth/schema';
 
 const CHDPredictionFeature = createRoute('/prediction', 'prediction')

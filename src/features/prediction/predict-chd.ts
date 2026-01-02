@@ -1,7 +1,7 @@
-import { predictionService } from '@/services/prediction.service';
+import { predictionService } from '../../services/prediction.service';
 import type { predictionDTO } from './schema';
-import { logger } from '@/plugins/logger';
-import { historyService } from '@/services/history.service';
+import { logger } from '../../plugins/logger';
+import { historyService } from '../../services/history.service';
 
 const bmiCalculator = (height: number, weight: number) => {
   return weight / height ** 2;

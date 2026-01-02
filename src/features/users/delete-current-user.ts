@@ -1,4 +1,4 @@
-import { userService } from '@/services/user.service';
+import { userService } from '../../services/user.service';
 
 export const deleteCurrentUser = async (currentUserId: string) => {
   // call userservice updateCurrentUser
