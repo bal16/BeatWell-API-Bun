@@ -29,7 +29,6 @@ export class ChatbotService {
     this.model = await tf.loadLayersModel(env.CHATBOT_MODEL_URL);
 
     // Load JSON Data
-    // Di Bun, cara paling efisien baca JSON lokal:
     // this.intents = (await Bun.file(env.CHATBOT_INTENTS_URL).json()).intents;
     // this.words = await Bun.file(env.CHATBOT_WORDS_URL).json();
     // this.classes = await Bun.file(env.CHATBOT_CLASSES_URL).json();
@@ -91,3 +90,5 @@ export class ChatbotService {
     return 'Maaf, saya tidak mengerti maksud Anda.';
   }
 }
+
+export const chatbotService = new ChatbotService();

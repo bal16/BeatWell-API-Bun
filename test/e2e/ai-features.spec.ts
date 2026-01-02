@@ -6,6 +6,7 @@ import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import * as schema from '@/lib/db/schema';
 import { logger } from '@/plugins/logger';
 import type { predictionDTO } from '@/features/prediction/schema';
+import { desc, eq } from 'drizzle-orm';
 
 const app = createApp().listen(3000);
 const api = edenTreaty<typeof app>('http://localhost:3000');
@@ -17,7 +18,7 @@ const testUser = {
   password: 'securepassword',
 };
 
-describe('Auth Endpoint', () => {
+describe('AI Features Endpoint', () => {
   const cleanupDB = async () => {
     await Promise.all([
       db.delete(schema.histories),
@@ -79,6 +80,8 @@ describe('Auth Endpoint', () => {
         glucose: 90,
       } as unknown as predictionDTO;
 
+      // ts-ignore to bypass strict type check for test purpose
+      // @ts-ignore
       const { data, error, status } = await api.prediction.post({
         $fetch: {},
         $query: {},
@@ -95,6 +98,123 @@ describe('Auth Endpoint', () => {
       expect(data).toHaveProperty('data.risk');
       expect(data).toHaveProperty('data.date');
       expect(data).toHaveProperty('error', false);
+    });
+
+    it('should fail prediction with invalid data', async () => {
+      const invalidData = {};
+
+      // ts-ignore to bypass strict type check for test purpose
+      // @ts-ignore
+      const { data, error, status } = await api.prediction.post({
+        $fetch: {},
+        $query: {},
+        $headers: {
+          authorization: `Bearer ${token}`,
+        },
+        ...invalidData,
+      });
+
+      expect(status).toBe(400);
+      expect(data).not.toBeNull();
+      expect(data?.error).toBeTrue();
+      expect(error).not.toBeNull();
+    });
+
+    it('should fail prediction without auth', async () => {
+      const testData = {
+        sex: 'male',
+        age: 45,
+        cigsPerday: 100,
+        BPMeds: true,
+        prevalentStroke: true,
+        prevalentHyp: false,
+        diabetes: true,
+        totChol: 200,
+        sysBP: 120,
+        diaBP: 80,
+        height: 1.75,
+        weight: 70,
+        heartRate: 70,
+        glucose: 90,
+      } as unknown as predictionDTO;
+
+      // ts-ignore to bypass strict type check for test purpose
+      // @ts-ignore
+      const { data, error, status } = await api.prediction.post({
+        $fetch: {},
+        $query: {},
+        // No authorization header
+        ...testData,
+      });
+
+      expect(status).toBe(401);
+      expect(data).not.toBeNull();
+      expect(error).not.toBeNull();
+      expect(data).toHaveProperty('message', 'Unauthorized');
+      expect(data?.error).toBeTrue();
+    });
+  });
+
+  describe('POST /chat', () => {
+    it('should chat successfully', async () => {
+      const question = 'Apa itu penyakit jantung?';
+
+      // ts-ignore to bypass strict type check for test purpose
+      // @ts-ignore
+      const { data, error, status } = await api.chat.post({
+        $fetch: {},
+        $query: {},
+        $headers: {
+          authorization: `Bearer ${token}`,
+        },
+        question,
+      });
+
+      expect(status).toBe(200);
+      expect(error).toBeNull();
+      expect(data).toHaveProperty('message', 'Prediction success');
+      expect(data).toHaveProperty('data.answer');
+      expect(typeof data!.data.answer).toBe('string');
+      expect(data).toHaveProperty('error', false);
+    });
+
+    it('should fail chat without auth', async () => {
+      const question = 'Apa itu penyakit jantung?';
+
+      // ts-ignore to bypass strict type check for test purpose
+      // @ts-ignore
+      const { data, error, status } = await api.chat.post({
+        $fetch: {},
+        $query: {},
+        // No authorization header
+        question,
+      });
+
+      expect(status).toBe(401);
+      expect(data).not.toBeNull();
+      expect(data).toHaveProperty('message', 'Unauthorized');
+      expect(data?.error).toBeTrue();
+      expect(error).not.toBeNull();
+    });
+
+    it('should fail chat with invalid data', async () => {
+      const invalidData = {};
+
+      // ts-ignore to bypass strict type check for test purpose
+      // @ts-ignore
+      const { data, error, status } = await api.chat.post({
+        $fetch: {},
+        $query: {},
+        $headers: {
+          authorization: `Bearer ${token}`,
+        },
+        ...invalidData,
+      });
+
+      expect(status).toBe(400);
+      expect(data).not.toBeNull();
+      expect(data?.error).toBeTrue();
+      expect(error).not.toBeNull();
     });
   });
 });
