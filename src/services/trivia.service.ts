@@ -1,6 +1,6 @@
 import {
   triviaRepository,
-  type TriviaRepository,
+  TriviaRepository,
 } from '@/repositories/trivia.repository';
 
 export class TriviaService {

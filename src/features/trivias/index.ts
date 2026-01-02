@@ -25,6 +25,7 @@ const triviaFeature = createRoute('/trivias', 'trivia')
       detail: {
         summary: 'Get Trivia Information',
         description: 'Endpoint to retrieve trivia information',
+        tags: ['Healthy Lifestyle'],
       },
       headers: z.object({
         authorization: authorizationTokenSchema,

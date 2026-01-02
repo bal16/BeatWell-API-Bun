@@ -77,16 +77,16 @@ describe('Trivia Endpoint', () => {
       expect(data).toHaveProperty('error', false);
       expect(data).toHaveProperty('data');
     });
-  });
 
-  it('should fail to fetch trivia questions without token', async () => {
-    const { data, status } = await api.trivias.get({
-      $query: {},
-      $headers: {},
+    it('should fail to fetch trivia questions without token', async () => {
+      const { data, status } = await api.trivias.get({
+        $query: {},
+        $headers: {},
+      });
+
+      expect(status).toBe(401);
+      expect(data).toHaveProperty('message', 'Unauthorized');
+      expect(data).toHaveProperty('error', true);
     });
-
-    expect(status).toBe(401);
-    expect(data).toHaveProperty('message', 'Unauthorized');
-    expect(data).toHaveProperty('error', true);
   });
 });
