@@ -24,7 +24,7 @@ export class HistoryService {
   public async record(userId: string, result: number) {
     const formattedResult = `${result}%`;
 
-    return await historyRepository.save({
+    await historyRepository.save({
       userId,
       result: formattedResult,
     });
