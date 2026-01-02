@@ -1,5 +1,5 @@
 import { logger } from '@/plugins/logger';
-import { createApp } from '../src/app';
+import { createApp } from '@/lib/app';
 
 const app = createApp();
 

@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test';
 import { edenTreaty } from '@elysiajs/eden';
-import { createApp } from '@/app';
+import { createApp } from '@/lib/app';
 import { db } from '@/lib/db/client';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import * as schema from '@/lib/db/schema';

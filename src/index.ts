@@ -1,7 +1,9 @@
-import { Elysia } from 'elysia';
+import { logger } from '@/plugins/logger';
+import { createApp } from '@/lib/app';
 
-const app = new Elysia().get('/', () => 'Hello Elysia').listen(3000);
+const app = createApp();
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
-);
+export default async function handler(request: Request) {
+  logger.info(`${request.method} ${request.url}`);
+  return app.fetch(request);
+}

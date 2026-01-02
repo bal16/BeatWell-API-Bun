@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test';
 import { edenTreaty } from '@elysiajs/eden';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import { createApp } from '@/app';
+import { createApp } from '@/lib/app';
 import { db } from '@/lib/db/client';
 import * as schema from '@/lib/db/schema';
 import { logger } from '@/plugins/logger';
