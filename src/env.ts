@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { env as bunenv } from 'bun';
+// import { env as Bun.env } from 'bun';
 
 /**
  * Environment variables schema validation using zod.
@@ -35,22 +35,22 @@ const envSchema = z.object({
 type Env = z.infer<typeof envSchema>;
 
 const raw = {
-  NODE_ENV: bunenv.NODE_ENV ?? process.env.NODE_ENV,
-  PORT: bunenv.PORT ?? process.env.PORT,
-  LOG_LEVEL: bunenv.LOG_LEVEL ?? process.env.LOG_LEVEL,
-  DATABASE_URL: bunenv.DATABASE_URL ?? process.env.DATABASE_URL,
+  NODE_ENV: Bun.env.NODE_ENV ?? process.env.NODE_ENV,
+  PORT: Bun.env.PORT ?? process.env.PORT,
+  LOG_LEVEL: Bun.env.LOG_LEVEL ?? process.env.LOG_LEVEL,
+  DATABASE_URL: Bun.env.DATABASE_URL ?? process.env.DATABASE_URL,
 
-  TRUSTED_ORIGINS: bunenv.TRUSTED_ORIGINS ?? process.env.TRUSTED_ORIGINS,
+  TRUSTED_ORIGINS: Bun.env.TRUSTED_ORIGINS ?? process.env.TRUSTED_ORIGINS,
 
-  // JWT_SECRET: bunenv.JWT_SECRET ?? process.env.JWT_SECRET,
+  // JWT_SECRET: Bun.env.JWT_SECRET ?? process.env.JWT_SECRET,
   PREDICTION_MODEL_URL:
-    bunenv.PREDICTION_MODEL_URL ?? process.env.PREDICTION_MODEL_URL,
-  CHATBOT_MODEL_URL: bunenv.CHATBOT_MODEL_URL ?? process.env.CHATBOT_MODEL_URL,
+    Bun.env.PREDICTION_MODEL_URL ?? process.env.PREDICTION_MODEL_URL,
+  CHATBOT_MODEL_URL: Bun.env.CHATBOT_MODEL_URL ?? process.env.CHATBOT_MODEL_URL,
   CHATBOT_INTENTS_URL:
-    bunenv.CHATBOT_INTENTS_URL ?? process.env.CHATBOT_INTENTS_URL,
+    Bun.env.CHATBOT_INTENTS_URL ?? process.env.CHATBOT_INTENTS_URL,
   CHATBOT_CLASSES_URL:
-    bunenv.CHATBOT_CLASSES_URL ?? process.env.CHATBOT_CLASSES_URL,
-  CHATBOT_WORDS_URL: bunenv.CHATBOT_WORDS_URL ?? process.env.CHATBOT_WORDS_URL,
+    Bun.env.CHATBOT_CLASSES_URL ?? process.env.CHATBOT_CLASSES_URL,
+  CHATBOT_WORDS_URL: Bun.env.CHATBOT_WORDS_URL ?? process.env.CHATBOT_WORDS_URL,
 };
 
 const result = envSchema.safeParse(raw);
